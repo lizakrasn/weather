@@ -31,13 +31,43 @@ export const Current = ({currentData}: CurrentProps) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  const getKilometers = (number: number) => {
+    const result = number / 1000;
+    return `${result} km`;
+  }
+
+  const getMiles = (number: number) => {
+    const result = (number * 0.00062137).toFixed(1);
+    return `${result} mi`
+  }
+
+  const getMph = (number: number) => {
+    const result = Math.round((number * 2.23693629)).toFixed();
+    return `${result} mph`;
+  }
+
+  const getKmh = (number: number) => {
+    const result = Math.round((number * 3.6)).toFixed();
+    return `${result} km/h`;
+  }
+
   const [isCelsius, setIsCelsius] = useState(true)
 
   const temperature = isCelsius 
     ? getCelsius(currentData.main.temp) 
     : getFahrenheit(currentData.main.temp);
 
-  const feelLike = "";
+  const feelsLike = isCelsius 
+    ? getCelsius(currentData.main.feels_like) 
+    : getFahrenheit(currentData.main.feels_like);
+
+  const visibility = isCelsius 
+  ? getKilometers(currentData.visibility) 
+  : getMiles(currentData.visibility);
+
+  const wind = isCelsius 
+    ? getKmh(currentData.wind.speed) 
+    : getMph(currentData.wind.speed);
 
   return (
     <section className="current">
@@ -62,14 +92,11 @@ export const Current = ({currentData}: CurrentProps) => {
           </div>
         </div>
         <p className="current__description">{capitalizeFirstLetter(currentData.weather[0].description)}</p>
-        <p className="current__updated">Updated as of ...</p>
         <div className="current__details">
-          <p className="current__detail">Feels Like 3</p>
-          <p className="current__detail">Wind</p>
-          <p className="current__detail">Visibility</p>
-          <p className="current__detail">Barometer</p>
-          <p className="current__detail">Humidity</p>
-          <p className="current__detail">Dew Point</p>
+          <p className="current__detail">Feels Like {feelsLike}°</p>
+          <p className="current__detail">Wind {wind}</p>
+          <p className="current__detail">Visibility {visibility}</p>
+          <p className="current__detail">Humidity {currentData.main.humidity}%</p>
         </div>
       </div>
     </section>
