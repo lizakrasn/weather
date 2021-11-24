@@ -18,14 +18,16 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      {
-        data
-          ? <div className="main">
-              <Current currentData={data}/>
-            </div>
-          : <p>Loading</p>
-      }
+      <div className="App-container">
+        <Header />
+        {
+          data
+            ? <div className="main">
+                <Current currentData={data}/>
+              </div>
+            : <p>Loading</p>
+        }
+      </div>
     </div>
   );
 }

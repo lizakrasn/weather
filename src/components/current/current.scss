@@ -1,0 +1,58 @@
+.current {
+  &__content {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__city {
+    font-size: 30px;
+  }
+
+  &__temperature {
+    font-size: 70px;
+  }
+
+  // &__img {
+  //   width: 140px;
+  //   height: auto;
+  // }
+
+  &__temperature-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 30px;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__description {
+    font-size: 22px;
+
+  }
+
+  &__button {
+    padding: 2px 5px;
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+    color: rgb(88, 98, 107);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: border-color 500ms;
+
+    &:hover {
+      border-color: white;
+    }
+
+    &.active {
+      color: black;
+    }
+  }
+}

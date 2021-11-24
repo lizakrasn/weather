@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  background-image: url("./icons/cloudy-background.jpg");
+  background-size: cover;
+}
+
+.App-container {
+  min-height: 100vh;
+  background: linear-gradient(transparent 15%, rgb(88, 98, 107));
 }
 
 .App-logo {

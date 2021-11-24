@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { countryList } from "../data/countries";
-import { CurrentDataObject } from "../models/weatherAPI";
+import { countryList } from "../../data/countries";
+import { CurrentDataObject } from "../../models/weatherAPI";
+import cloudy from '../../icons/weather/static/03.svg';
 
 import './current.scss';
 
@@ -9,6 +10,7 @@ interface CurrentProps {
 }
 
 export const Current = ({currentData}: CurrentProps) => {
+  console.log('currentData', currentData);
   const getCountryName = (city: string) => {
     const array = Object.entries(countryList);
     const country = array.find(country => country[0] === city);
@@ -35,36 +37,40 @@ export const Current = ({currentData}: CurrentProps) => {
     ? getCelsius(currentData.main.temp) 
     : getFahrenheit(currentData.main.temp);
 
+  const feelLike = "";
+
   return (
     <section className="current">
       <div className="current__content">
         <p className="current__city">{currentData.name}, {getCountryName(currentData.sys.country)}</p>
         <div className="current__temperature-block">
-          <div className="current__icon"></div>
+          <div className="current__icon">
+            <img className="current__img" alt="Cloudy icon" src={cloudy}/>
+          </div>
           <p className="current__temperature">{temperature} °</p>
           <div className="current__buttons">
             <button 
-              className="current__button"
+              className={isCelsius ? "current__button active" : "current__button"}
               type="button"
               onClick={() => setIsCelsius(true)}
-            >{isCelsius ? 'C' : 'F'}</button>
+            >C</button>
             <button
-              className="current__button"
+              className={isCelsius ? "current__button" : "current__button active"}
               type="button"
               onClick={() => setIsCelsius(false)}
-            >{isCelsius ? 'F' : 'C'}</button>
+            >F</button>
           </div>
         </div>
         <p className="current__description">{capitalizeFirstLetter(currentData.weather[0].description)}</p>
-        {/* <p className="current__updated">Updated as of ...</p> */}
-        {/* <div className="current__details">
+        <p className="current__updated">Updated as of ...</p>
+        <div className="current__details">
           <p className="current__detail">Feels Like 3</p>
           <p className="current__detail">Wind</p>
           <p className="current__detail">Visibility</p>
           <p className="current__detail">Barometer</p>
           <p className="current__detail">Humidity</p>
           <p className="current__detail">Dew Point</p>
-        </div> */}
+        </div>
       </div>
     </section>
   )
