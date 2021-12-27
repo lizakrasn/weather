@@ -1,7 +1,16 @@
 import React, { useState } from "react";
-import { countryList } from "../../data/countries";
 import { CurrentDataObject } from "../../models/weatherAPI";
 import cloudy from '../../icons/weather/static/03.svg';
+import { 
+  getCelsius,
+  getFahrenheit,
+  capitalizeFirstLetter,
+  getKilometers,
+  getMiles,
+  getMph,
+  getKmh,
+  getCountryName
+} from "../../ts/helpers";
 
 import {
   StyledCurrent,
@@ -20,47 +29,6 @@ interface CurrentProps {
 }
 
 export const Current = ({currentData}: CurrentProps) => {
-  console.log('currentData', currentData);
-  const getCountryName = (city: string) => {
-    const array = Object.entries(countryList);
-    const country = array.find(country => country[0] === city);
-
-    return country ? country[1] : country
-  }
-
-  const getCelsius = (number: number) => {
-    return Math.floor(number - 272.15);
-  }
-
-  const getFahrenheit = (number: number) => {
-    const result = number * 1.8 - 459.67;
-    return Math.round(result);
-  }
-
-  const capitalizeFirstLetter = (string: string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  const getKilometers = (number: number) => {
-    const result = number / 1000;
-    return `${result} km`;
-  }
-
-  const getMiles = (number: number) => {
-    const result = (number * 0.00062137).toFixed(1);
-    return `${result} mi`
-  }
-
-  const getMph = (number: number) => {
-    const result = Math.round((number * 2.23693629)).toFixed();
-    return `${result} mph`;
-  }
-
-  const getKmh = (number: number) => {
-    const result = Math.round((number * 3.6)).toFixed();
-    return `${result} km/h`;
-  }
-
   const [isCelsius, setIsCelsius] = useState(true)
 
   const temperature = isCelsius 
