@@ -3,7 +3,17 @@ import { countryList } from "../../data/countries";
 import { CurrentDataObject } from "../../models/weatherAPI";
 import cloudy from '../../icons/weather/static/03.svg';
 
-import './current.scss';
+import {
+  StyledCurrent,
+  CurrentContent,
+  TemperatureBlock,
+  Buttons,
+  Button,
+  Details,
+  Description,
+  City,
+  Temperature
+} from './styles';
 
 interface CurrentProps {
   currentData: CurrentDataObject
@@ -70,35 +80,33 @@ export const Current = ({currentData}: CurrentProps) => {
     : getMph(currentData.wind.speed);
 
   return (
-    <section className="current">
-      <div className="current__content">
-        <p className="current__city">{currentData.name}, {getCountryName(currentData.sys.country)}</p>
-        <div className="current__temperature-block">
-          <div className="current__icon">
-            <img className="current__img" alt="Cloudy icon" src={cloudy}/>
-          </div>
-          <p className="current__temperature">{temperature} °</p>
-          <div className="current__buttons">
-            <button 
-              className={isCelsius ? "current__button active" : "current__button"}
+    <StyledCurrent>
+      <CurrentContent>
+        <City>{currentData.name}, {getCountryName(currentData.sys.country)}</City>
+        <TemperatureBlock>
+          <img className="current__img" alt="Cloudy icon" src={cloudy}/>
+          <Temperature>{temperature} °</Temperature>
+          <Buttons>
+            <Button 
+              className={isCelsius ? "active" : ""}
               type="button"
               onClick={() => setIsCelsius(true)}
-            >C</button>
-            <button
-              className={isCelsius ? "current__button" : "current__button active"}
+            >C</Button>
+            <Button
+              className={isCelsius ? "" : "active"}
               type="button"
               onClick={() => setIsCelsius(false)}
-            >F</button>
-          </div>
-        </div>
-        <p className="current__description">{capitalizeFirstLetter(currentData.weather[0].description)}</p>
-        <div className="current__details">
-          <p className="current__detail">Feels Like {feelsLike}°</p>
-          <p className="current__detail">Wind {wind}</p>
-          <p className="current__detail">Visibility {visibility}</p>
-          <p className="current__detail">Humidity {currentData.main.humidity}%</p>
-        </div>
-      </div>
-    </section>
+            >F</Button>
+          </Buttons>
+        </TemperatureBlock>
+        <Description>{capitalizeFirstLetter(currentData.weather[0].description)}</Description>
+        <Details>
+          <p >Feels Like {feelsLike}°</p>
+          <p>Wind {wind}</p>
+          <p>Visibility {visibility}</p>
+          <p>Humidity {currentData.main.humidity}%</p>
+        </Details>
+      </CurrentContent>
+    </StyledCurrent>
   )
 }

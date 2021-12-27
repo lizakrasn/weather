@@ -14,8 +14,8 @@ export const Header = () => {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <HeaderStyled className="header">
-      <Logo className="header__logo">Forecast</Logo>
+    <HeaderStyled>
+      <Logo>Forecast</Logo>
 
       <HeaderContent>
         <Restart>
@@ -24,7 +24,6 @@ export const Header = () => {
 
         <SearchContainer>
           <Input
-            className="header__search"
             type="text"
             placeholder="Search"
             value={inputValue}
