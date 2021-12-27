@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import theme from './theme';
 import reset from './reset';
-import { defaultTheme } from './theme';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -41,33 +40,9 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  ::selection {
-    color: ${theme.colors.white};
-    background-color: ${theme.colors.lime};
-  }
-
    /* width */
    ::-webkit-scrollbar {
     /* width: 3px; */
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    /* background-color: ${theme.colors.purple_light_1};
-    border-radius: 5px; */
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    /* background: ${theme.colors.purple};
-    transition: background 400ms ease;
-    border-radius: 5px;
-    cursor: pointer; */
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    /* background: ${theme.colors.primary}; */
   }
 
   input {
@@ -85,8 +60,6 @@ const GlobalStyle = createGlobalStyle`
   input[type='number'] {
     -moz-appearance: textfield;
   }
-
-  ${defaultTheme};
 `;
 
 export default GlobalStyle;

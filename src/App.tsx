@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import './App.scss';
+import GlobalStyle from './assets/global';
 import { Current } from './components/current/current';
 import { Header } from './components/header/header';
 
@@ -17,18 +18,21 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <div className="App-container">
-        <Header />
-        {
-          data
-            ? <div className="main">
-                <Current currentData={data}/>
-              </div>
-            : <p>Loading</p>
-        }
+    <Fragment>
+      <GlobalStyle />
+      <div className="App">
+        <div className="App-container">
+          <Header />
+          {
+            data
+              ? <div className="main">
+                  <Current currentData={data}/>
+                </div>
+              : <p>Loading</p>
+          }
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 }
 
