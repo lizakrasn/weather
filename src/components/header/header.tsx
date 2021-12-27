@@ -1,32 +1,40 @@
 import React, { useState } from "react";
-import Restart from '../../icons/restart.svg';
-
-import './header.scss';
+import { Icon } from "../ui/Icon";
+import { 
+  HeaderStyled,
+  HeaderContent,
+  Restart,
+  SearchContainer,
+  Input,
+  SearchIconContainer,
+  Logo
+ } from './styles'
 
 export const Header = () => {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <header className="header">
-      <div className="header__logo">Forecast</div>
+    <HeaderStyled className="header">
+      <Logo className="header__logo">Forecast</Logo>
 
-      <div className="header__content">
-        <button className="header__restart">
-          <img className="header__restart-icon" src={Restart} alt="restart icon"/>
-        </button>
+      <HeaderContent>
+        <Restart>
+          <Icon type="restart"/>
+        </Restart>
 
-        <div className="header__search-container">
-          <input
+        <SearchContainer>
+          <Input
             className="header__search"
             type="text"
             placeholder="Search"
             value={inputValue}
             onChange={(event) => {setInputValue(event.target.value)}}
           />
-          {/* <button className="header__reset" type="button"></button> */}
-          <span className="header__search-icon"></span>
-        </div>
-      </div>
-    </header>
+          <SearchIconContainer>
+            <Icon type="search"/>
+          </SearchIconContainer>
+        </SearchContainer>
+      </HeaderContent>
+    </HeaderStyled>
   )
 }
