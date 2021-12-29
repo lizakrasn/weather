@@ -1,8 +1,11 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import './App.scss';
 import GlobalStyle from './assets/global';
 import { Current } from './components/current/current';
 import { Header } from './components/header/header';
+import {
+  AppStyled,
+  AppContainer
+} from './styles'
 
 function App() {
   const APIKEY = "b4c36e46349fa74357ded82c0d7998ab";
@@ -20,8 +23,8 @@ function App() {
   return (
     <Fragment>
       <GlobalStyle />
-      <div className="App">
-        <div className="App-container">
+      <AppStyled>
+        <AppContainer>
           <Header />
           {
             data
@@ -30,8 +33,8 @@ function App() {
                 </div>
               : <p>Loading</p>
           }
-        </div>
-      </div>
+        </AppContainer>
+      </AppStyled>
     </Fragment>
   );
 }
